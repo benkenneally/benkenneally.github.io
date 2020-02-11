@@ -1,0 +1,36 @@
+.background {
+	background-color: lightgrey;
+}
+
+.toptitle {
+	text-align: center;
+}
+
+h1 {
+	font-size: 50px;
+	font-family: 'Galada', cursive;
+	text-align: center;
+}
+
+h2 {
+	font-size: 40px;
+	font-family: 'Galada', cursive;
+}
+
+h3 {
+	font-size: 40px;
+	font-family: 'Galada', cursive;
+  }
+
+ .benefitstext {
+ 	font-size: 20px;
+	font-family: 'Galada', cursive;
+ }
+
+.benefits {
+	font-family: 'Galada', cursive;
+	margin: 0;
+	padding: 0;
+	font-size: 30px;
+
+}
