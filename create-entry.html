@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <script src="https://kit.fontawesome.com/b99aea2a2d.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+  <title>Document</title>
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1C1C1C;">
+      <a href="index.html"><img class="img-responsive2"  src="img/presentlogo2.png" width="100" height="50">
+      </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="demo.html">Demo <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="about.html">About us</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="reviews.html">Customer Testimonials</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="diary.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button class="btn btn-outline-warning d-lg-inline-block mb-3 mb-md-0 m1-md-3" type="submit">Diary
+                      </button>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="diary.html">My Diary</a>
+                      <a class="dropdown-item" href="create-entry.html">Create new entry</a>
+                    </div>
+                  </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" href="signup.html">
+                <button class="btn btn-outline-success d-lg-inline-block mb-3 mb-md-0 m1-md-3" type="submit">Sign-up
+                </button>
+              </a>        
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+  <h1>Create diary entry</h1>
+  <div id="success-msg" class="hidden" style="color: teal">Entry created - <a href="/" id="new-entry-link">view</a></div>
+  <form id="diary-form" action="#">
+    <label for="title">Entry title:</label>
+    <input type="text" name="title">
+    <br/>
+    <label for="description">Entry text:</label>
+    <textarea name="description"></textarea>
+    <br/>
+    <input type="submit" value="Save">
+  </form>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+
+
+<!-- This script tag powers our form by sending the information to the API once you've cliked submit!  -->
+<script>
+  const url = 'https://benkenneally.pythonanywhere.com/diaryentry';
+
+  document.querySelector('#diary-form').addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    console.log(ev);
+
+    const data = {
+      title: ev.target.elements[0].value,
+      description: ev.target.elements[1].value,
+    }
+
+    fetch(url, {
+      method: 'post',
+      headers: {
+      'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(r => r.json())
+    .then(res => {
+      if (res.id) {
+        document.querySelector('#success-msg').classList.remove('hidden');
+        document.querySelector('#new-entry-link').setAttribute('href', `/single-entry.html?id=${res.id}`);
+      }
+    })
+  });
+</script>
+</html>
