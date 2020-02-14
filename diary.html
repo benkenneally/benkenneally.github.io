@@ -18,7 +18,7 @@
 
   <title>Document</title>
 </head>
-<body>
+<body>  
 
   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1C1C1C;">
       <a href="index.html"><img class="img-responsive2"  src="img/presentlogo2.png" width="100" height="50">
@@ -99,15 +99,21 @@
       .then(data => {
         const ids = Object.keys(data.entries)
         const sortedEntries = ids.sort((a, b) => new Date(data.entries[a]).getTime() - new Date(data.entries[b]).getTime());
-            const deletepost=() => {
-              console.log("hello");
+
+        const deletepost=() => {
+                  console.log("hello");
+
+        
+            // const deletepost=() => {
+              // console.log("hello");
           //   const deleteurl="https://benkenneally.pythonanywhere.com/diaryentry/"+id;
           //   fetch(deleteurl, {
           //     method: 'delete'
           //   })
           //   .then(r => {
           //     console.log(r)})
-          }
+          // }
+        }
         const entriesContent = ids.map(id => `
 
           <div class="row">
