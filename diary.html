@@ -13,6 +13,9 @@
 
   <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
+  <link href="https://fonts.googleapis.com/css?family=Galada&display=swap" rel="stylesheet">
+
+
   <title>Document</title>
 </head>
 <body>
@@ -57,26 +60,28 @@
           </ul>
         </div>
       </nav>
+      
 <div class="container">
   <br>
-  <h1>My diary</h1>
+  <br>
+  <h6>My diary</h6>
   <br>
   <hr />
   <div class="row" style="background-color: #1C1C1C">
-    <div class="col-md-4">
+    <div class="col-4">
       <h2 style="color: white"> Title </h2>
     </div>
-    <div class="col-md-4">
+    <div class="col-4">
       <h2 style="color: white"> Date </h2>
     </div>
-    <div class="col-md-4">
+    <div class="col-4">
       <h2 style="color: white"> Diary Entry </h2>
     </div>
   </div>
   <hr />
 
   <div id="diary-entries">
-    <h3>Loading entries&hellip;</h3>
+    <h4>Loading entries&hellip;</h4>
   </div>
 
 
@@ -104,21 +109,25 @@
           //     console.log(r)})
           }
         const entriesContent = ids.map(id => `
+
           <div class="row">
+
             <div class="col-md-4">
               <h4>${data.entries[id].title}</h4>
               <a href="single-entry.html?id=${id}">View</a>
               <input type="button" onclick="${deletepost()}" value="delete"> 
             </div>
+
             <div class="col-md-4">
-              <h5>${new Date(data.entries[id].createdat).toDateString()} - ${new Date(data.entries[id].createdat).toLocaleTimeString()}</h5>  
+              <p>${new Date(data.entries[id].createdat).toDateString()} - ${new Date(data.entries[id].createdat).toLocaleTimeString()}</p>  
             </div>
-            <div class="col-md-4">
+
+            <div class="col-md-4 testdiary">
               <p>${data.entries[id].description}</p> 
             </div>
           </div>
           <hr />
-        `);
+        `).join("");
         diaryEntries.innerHTML = entriesContent;
       })
     });
